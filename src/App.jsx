@@ -1,6 +1,4 @@
 import React from 'react';
-import Form from './components/Form';
-import List from './components/List';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'; //Contiene todo el estado de la app
 import Main from './layout/Main';
@@ -11,11 +9,12 @@ const initialValue = {
 };
 
 const reducer = (state = initialValue, action) => {
+    
     switch (action.type) {
         case 'ADD_ITEM':
             return { ...state, items: [...state.items, action.payload] }
         case 'REMOVE_ITEM':
-            return { ...state, items: state.items.filter(i => i.item !== action.payload) }
+            return { ...state, items: state.items.filter(i => i.value !== action.payload) }
         default:
             return state
     }
@@ -29,9 +28,7 @@ const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window
 const App = () => {
     return (
         <Provider store={store} >
-            <div>
-                <Main />
-            </div>
+            <Main />
         </Provider>
     );
 }

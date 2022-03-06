@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
-import Item from '../Item';
+import Item from './Item';
 
 const List = ({ list, removeItem }) => {
 
@@ -12,10 +12,10 @@ const List = ({ list, removeItem }) => {
     return (
 
         <Grid container>
-            {list && list.map(i =>
+            {list && list.map(item =>
                 <Item
-                    {...i}
-                    key={i.item}
+                    {...item}
+                    key={item.id}
                     onClickRemove={onClickRemove}>
                 </Item>
             )}
