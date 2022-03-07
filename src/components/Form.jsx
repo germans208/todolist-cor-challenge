@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, makeStyles } from '@material-ui/core';
+import { Button, Card, CardActions, Grid, makeStyles } from '@material-ui/core';
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import { uid } from '../utils/functions';
@@ -9,10 +9,7 @@ import choicesStatus from '../data/status';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
+
     },
 }));
 
@@ -23,15 +20,16 @@ const Form = ({ addItem }) => {
     const [value, setValue] = useState({
         id: '',
         title: '',
+        description: '',
         priority: '',
-        status: '',
-        description: ''
+        status: ''
     });
 
     const onSubmit = useCallback((event) => {
         event.preventDefault()
         addItem(value)
         setValue({});
+        event.currentTarget.reset();
     }, [setValue, addItem, value]);
 
     const handleInputChange = (event) => {
@@ -46,50 +44,42 @@ const Form = ({ addItem }) => {
         <div>
             <form onSubmit={onSubmit}>
                 <Card className={classes.root}>
-                    <CardContent>
-                        <Box display={{ md: 'block', lg: 'flex' }}>
-                            <Box flex={3} mr={{ md: 0, lg: '1em' }}>
-                                <Box display={{ xs: 'block', sm: 'flex' }}>
-                                    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-                                        <InputField
-                                            name="title"
-                                            placeholder="Titulo"
-                                            onChange={handleInputChange}
-                                        />
-                                    </Box>
-                                    <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-                                        <SelectField
-                                            name="priority"
-                                            placeholder="Prioridad"
-                                            value={value}
-                                            onChange={handleInputChange}
-                                            choices={choicesPriority}
-                                            fullWidth
-                                        />
-                                    </Box>
-                                    <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-                                        <SelectField
-                                            name="status"
-                                            placeholder="Estado"
-                                            value={value}
-                                            onChange={handleInputChange}
-                                            choices={choicesStatus}
-                                        />
-                                    </Box>
-                                </Box>
+                    <Grid container>
+                        <Grid item xs={3}>
+                            <InputField
+                                name="title"
+                                placeholder="Titulo"
+                                onChange={handleInputChange}
+                            />
+                        </Grid>
+                        <Grid item xs={3}>
+                            <SelectField
+                                name="priority"
+                                placeholder="Prioridad"
+                                value={value.priority}
+                                onChange={handleInputChange}
+                                choices={choicesPriority}
+                                fullWidth
+                            />
+                        </Grid>
+                        <Grid item xs={3}>
+                            <SelectField
+                                name="status"
+                                placeholder="Estado"
+                                value={value.status}
+                                onChange={handleInputChange}
+                                choices={choicesStatus}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <InputField
+                                name="description"
+                                placeholder="Descripcion"
+                                onChange={handleInputChange}
+                            />
+                        </Grid>
+                    </Grid>
 
-                                <Box display={{ xs: 'block', sm: 'flex' }}>
-                                    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-                                        <InputField
-                                            name="description"
-                                            placeholder="Descripcion"
-                                            onChange={handleInputChange}
-                                        />
-                                    </Box>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </CardContent>
                     <CardActions>
                         <Button
                             type="submit"
@@ -109,7 +99,8 @@ const Form = ({ addItem }) => {
 const mapDispatchToProps = (dispatch) => {
     return ({
         addItem: (value) => {
-            dispatch({ type: 'ADD_ITEM', payload: { value } })
+            //dispatch({ type: 'ADD_ITEM', payload: { value } })
+            dispatch({ type: 'ADD_ITEM', payload: value })
         }
     })
 }

@@ -3,11 +3,15 @@ import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import Item from './Item';
 
-const List = ({ list, removeItem }) => {
+const List = ({ list, removeItem, editItem }) => {
 
     const onClickRemove = useCallback((item) => {
         removeItem(item);
     }, [removeItem])
+
+    const onClickEdit = useCallback((item) => {
+        editItem(item);
+    }, [editItem])
 
     return (
 
@@ -16,7 +20,8 @@ const List = ({ list, removeItem }) => {
                 <Item
                     {...item}
                     key={item.id}
-                    onClickRemove={onClickRemove}>
+                    onClickRemove={onClickRemove}
+                    onClickEdit={onClickEdit}>
                 </Item>
             )}
         </Grid>
@@ -34,7 +39,10 @@ const mapDispatchToProps = (dispatch) => {
     return ({
         removeItem: (value) => {
             dispatch({ type: 'REMOVE_ITEM', payload: value })
-        }
+        },
+        editItem: (value) => {
+            dispatch({ type: 'EDIT_ITEM', payload: value })
+        } 
     })
 }
 

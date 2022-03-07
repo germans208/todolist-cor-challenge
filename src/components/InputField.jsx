@@ -10,6 +10,7 @@ const InputField = ({ name, placeholder, onChange }) => {
             placeholder={placeholder}
             onChange={onChange}
             style={{ width: "45%" }}
+            size="small"
         />
     )
 }

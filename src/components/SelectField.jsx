@@ -2,10 +2,8 @@ import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React from 'react';
 
 const SelectField = ({ value, name, placeholder, onChange, choices }) => {
-
     return (
-        <FormControl variant="outlined" style={{ width: "45%" }}
-        >
+        <FormControl variant="outlined" size="small" style={{ width: "100%" }}>
             <InputLabel id={placeholder}>
                 {placeholder}
             </InputLabel>
@@ -14,7 +12,7 @@ const SelectField = ({ value, name, placeholder, onChange, choices }) => {
                 label={placeholder}
                 id={name}
                 name={name}
-                value={value.name}
+                value={value}
                 onChange={onChange}
             >
                 {choices.map((item, i) => (
