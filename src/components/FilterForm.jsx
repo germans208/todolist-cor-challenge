@@ -25,7 +25,7 @@ const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
         });
     }, [setValue, filterByStatus, filterByPriority, orderByStatus, value]);
 
-     // useEffect(() => {
+    // useEffect(() => {
     //     const newValue = { id: 'TODOS', name: 'TODOS' }
     //     choicesPriority.unshift(newValue)
     //     choicesStatus.unshift(newValue)
@@ -34,32 +34,32 @@ const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
     return (
         <div>
             <Card>
-                <Grid container>
-                    <Grid item xs={3}>
-                        <SelectField
-                            name="priority"
-                            placeholder="Prioridad"
-                            value={value.priority}
-                            onChange={handleInputChange}
-                            choices={choicesPriority}
-                            fullWidth
-                        />
+                <Grid container spacing={1}>
+                    <Grid item xs={9}>
+                        <Grid container spacing={1}>
+                            <Grid item xs={4}>
+                                <SelectField
+                                    name="priority"
+                                    placeholder="Prioridad"
+                                    value={value.priority}
+                                    onChange={handleInputChange}
+                                    choices={choicesPriority}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <SelectField
+                                    name="status"
+                                    placeholder="Estado"
+                                    value={value.status}
+                                    onChange={handleInputChange}
+                                    choices={choicesStatus}
+                                />
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={3}>
-                        <SelectField
-                            name="status"
-                            placeholder="Estado"
-                            value={value.status}
-                            onChange={handleInputChange}
-                            choices={choicesStatus}
-                        />
-                    </Grid>
-                </Grid>
-            </Card>
 
-            <Card>
-                <Grid container>
-                    <Grid item xs={3}>
+                    <Grid item xs={3} sx={{ ml: 6 }}>
                         <SelectField
                             name="order"
                             placeholder="Ordenar Por"

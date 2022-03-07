@@ -8,8 +8,26 @@ import choicesStatus from '../data/status';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-
+        marginTop: '16px'
     },
+    title: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '100%',
+        alignSelf: 'flex-start'
+    },
+    button: {
+        marginTop: '16px',
+        display: 'flex',
+        justifyContent: 'flex-end',
+    },
+    card: {
+        marginTop: '16px',
+        border: '2px solid grey',
+        borderRadius: '10px',
+        padding: '10px',
+        
+    }
 }));
 
 const Form = ({ addItem }) => {
@@ -40,35 +58,37 @@ const Form = ({ addItem }) => {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <Card className={classes.root}>
-                    <Grid container>
-                        <Grid item xs={3}>
-                            <InputField
-                                name="title"
-                                placeholder="Titulo"
-                                onChange={handleInputChange}
-                            />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <SelectField
-                                name="priority"
-                                placeholder="Prioridad"
-                                value={value.priority}
-                                onChange={handleInputChange}
-                                choices={choicesPriority}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <SelectField
-                                name="status"
-                                placeholder="Estado"
-                                value={value.status}
-                                onChange={handleInputChange}
-                                choices={choicesStatus}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
+                <Card className={classes.card}>
+                    <Grid container className={classes.root}>
+                        <div className={classes.title}>
+                            <Grid item xs={3}>
+                                <InputField
+                                    name="title"
+                                    placeholder="Titulo"
+                                    onChange={handleInputChange}
+                                />
+                            </Grid>
+                            <Grid item xs={3} >
+                                <SelectField
+                                    name="priority"
+                                    placeholder="Prioridad"
+                                    value={value.priority}
+                                    onChange={handleInputChange}
+                                    choices={choicesPriority}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={3}>
+                                <SelectField
+                                    name="status"
+                                    placeholder="Estado"
+                                    value={value.status}
+                                    onChange={handleInputChange}
+                                    choices={choicesStatus}
+                                />
+                            </Grid>
+                        </div>
+                        <Grid item xs={12} className={classes.root}>
                             <InputField
                                 name="description"
                                 placeholder="Descripcion"
@@ -77,15 +97,18 @@ const Form = ({ addItem }) => {
                         </Grid>
                     </Grid>
 
-                    <CardActions>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                        >
-                            Crear tarea
-                        </Button>
-                    </CardActions>
+                    <div className={classes.button}>
+                        <CardActions>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                            >
+                                Crear tarea
+                            </Button>
+                        </CardActions>
+                    </div>
+
                 </Card>
             </form>
         </div>

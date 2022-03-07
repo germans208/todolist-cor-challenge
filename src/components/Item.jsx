@@ -14,6 +14,10 @@ const useStyles = makeStyles({
         margin: '0.5rem 0',
         marginTop: 10,
         marginLeft: 10,
+    },
+
+    priority: {
+        marginTop: '16px'
     }
 });
 //Cambie VALUE por cada proopiedad anterior: value.title
@@ -46,7 +50,7 @@ const Item = ({ id, title, description, status, priority, onClickRemove, onClick
         <Grid item key={0} xs={12} sm={6} md={6} lg={4}>
             <Card className={classes.card}>
 
-                <CardHeader
+                <CardHeader className={classes.priority}
 
                     title={editValue ?
                         <SelectField
@@ -56,7 +60,8 @@ const Item = ({ id, title, description, status, priority, onClickRemove, onClick
                             onChange={handleInputChange}
                             choices={choicesPriority}
                             fullWidth
-                        /> : `Prioridad: ${priority}`
+                        /> :
+                         `Prioridad: ${priority}`
                     }
 
                     subheader={editValue ?
@@ -66,7 +71,8 @@ const Item = ({ id, title, description, status, priority, onClickRemove, onClick
                             value={value.status}
                             onChange={handleInputChange}
                             choices={choicesStatus}
-                        /> : `Estado: ${status}`
+                        /> : 
+                        `Estado: ${status}`
                     }
 
                 />
