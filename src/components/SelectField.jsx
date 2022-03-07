@@ -1,5 +1,5 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React from 'react';
+import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const SelectField = ({ value, name, placeholder, onChange, choices }) => {
     return (

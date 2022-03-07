@@ -1,7 +1,6 @@
-import { Button, Card, CardActions, Grid, makeStyles } from '@material-ui/core';
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { uid } from '../utils/functions';
+import { Button, Card, CardActions, Grid, makeStyles } from '@material-ui/core';
 import InputField from './InputField';
 import SelectField from './SelectField';
 import choicesPriority from '../data/priority';
@@ -13,21 +12,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 const Form = ({ addItem }) => {
     const classes = useStyles();
 
     const [value, setValue] = useState({
-        id: '',
-        title: '',
-        description: '',
-        priority: '',
-        status: ''
+        title: null,
+        description: null,
+        priority: null,
+        status: null,
+        id: 0,
     });
 
     const onSubmit = useCallback((event) => {
-        event.preventDefault()
-        addItem(value)
+        event.preventDefault();
+        addItem(value);
         setValue({});
         event.currentTarget.reset();
     }, [setValue, addItem, value]);
@@ -35,7 +33,6 @@ const Form = ({ addItem }) => {
     const handleInputChange = (event) => {
         setValue({
             ...value,
-            id: uid(),
             [event.target.name]: event.target.value
         })
     }
@@ -95,12 +92,14 @@ const Form = ({ addItem }) => {
     )
 }
 
+let todoId = 1
+
 //Disparador de Acciones
 const mapDispatchToProps = (dispatch) => {
     return ({
         addItem: (value) => {
             //dispatch({ type: 'ADD_ITEM', payload: { value } })
-            dispatch({ type: 'ADD_ITEM', payload: value })
+            dispatch({ type: 'ADD_ITEM', payload: { ...value, id: todoId++ } })
         }
     })
 }

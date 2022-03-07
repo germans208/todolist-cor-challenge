@@ -1,20 +1,13 @@
-import { Card, Grid } from '@material-ui/core';
 import React, { useCallback, useState } from 'react';
-import { uid } from '../utils/functions';
+import { connect } from 'react-redux';
+import { Card, Grid } from '@material-ui/core';
 import SelectField from './SelectField';
 import choicesPriority from '../data/priority';
 import choicesStatus from '../data/status';
-import { connect } from 'react-redux';
 
 const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
 
-    const [value, setValue] = useState({
-        id: '',
-        title: '',
-        priority: '',
-        status: '',
-        description: ''
-    });
+    const [value, setValue] = useState({});
 
     const handleInputChange = useCallback((event) => {
 
@@ -28,13 +21,11 @@ const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
 
         setValue({
             ...value,
-            id: uid(),
             [event.target.name]: event.target.value
         });
-
     }, [setValue, filterByStatus, filterByPriority, orderByStatus, value]);
 
-    // useEffect(() => {
+     // useEffect(() => {
     //     const newValue = { id: 'TODOS', name: 'TODOS' }
     //     choicesPriority.unshift(newValue)
     //     choicesStatus.unshift(newValue)

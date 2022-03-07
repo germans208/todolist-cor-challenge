@@ -1,9 +1,9 @@
+import React, { useCallback, useState } from 'react';
 import { Card, CardActions, CardContent, CardHeader, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import { Delete, Save } from '@material-ui/icons';
 import { Edit } from '@material-ui/icons';
 import choicesPriority from '../data/priority';
 import choicesStatus from '../data/status';
-import React, { useCallback, useState } from 'react';
 import SelectField from './SelectField';
 
 const useStyles = makeStyles({

@@ -1,9 +1,9 @@
-import { Grid } from '@material-ui/core';
 import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
+import { Grid } from '@material-ui/core';
 import Item from './Item';
 
-const List = ({ list, removeItem, editItem }) => {
+const List = ({ list, filtered, filteredItems, removeItem, editItem }) => {
 
     const onClickRemove = useCallback((item) => {
         removeItem(item);
@@ -13,25 +13,41 @@ const List = ({ list, removeItem, editItem }) => {
         editItem(item);
     }, [editItem])
 
-    return (
-
-        <Grid container>
-            {list && list.map(item =>
-                <Item
-                    {...item}
-                    key={item.id}
-                    onClickRemove={onClickRemove}
-                    onClickEdit={onClickEdit}>
-                </Item>
-            )}
-        </Grid>
-    );
+    if (filtered) {
+        return (
+            <Grid container>
+                {filteredItems && filteredItems.map(item =>
+                    <Item
+                        {...item}
+                        key={item.id}
+                        onClickRemove={onClickRemove}
+                        onClickEdit={onClickEdit}>
+                    </Item>
+                )}
+            </Grid>
+        );
+    } else {
+        return (
+            <Grid container>
+                {list && list.map(item =>
+                    <Item
+                        {...item}
+                        key={item.id}
+                        onClickRemove={onClickRemove}
+                        onClickEdit={onClickEdit}>
+                    </Item>
+                )}
+            </Grid>
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
     //obtenemos solamente lo que necesitamos, inyecta una props nueva al List
     return {
-        list: state.items
+        list: state.items,
+        filtered: state.filtered,
+        filteredItems: state.filteredItems
     }
 }
 
@@ -42,7 +58,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         editItem: (value) => {
             dispatch({ type: 'EDIT_ITEM', payload: value })
-        } 
+        }
     })
 }
 
