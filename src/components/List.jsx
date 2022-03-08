@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
-import { Grid } from '@material-ui/core';
 import Item from './Item';
+import { Grid } from '@material-ui/core';
 
 const List = ({ list, filtered, filteredItems, removeItem, editItem }) => {
 

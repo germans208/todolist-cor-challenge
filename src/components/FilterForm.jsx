@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { Card, Grid, makeStyles } from '@material-ui/core';
 import SelectField from './SelectField';
 import choicesPriority from '../data/priority';
 import choicesStatus from '../data/status';
+import { Card, Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
     card: {
@@ -82,7 +82,6 @@ const FilterForm = ({ filterAll, filterByStatus, filterByPriority, orderByStatus
     )
 }
 
-//Disparador de Acciones
 const mapDispatchToProps = (dispatch) => {
     return ({
         filterAll: (value) => {

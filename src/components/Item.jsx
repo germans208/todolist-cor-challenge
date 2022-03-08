@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { Card, CardActions, CardContent, Chip, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
-import { Delete, Save } from '@material-ui/icons';
-import { Edit } from '@material-ui/icons';
 import choicesPriority from '../data/priority';
 import choicesStatus from '../data/status';
 import SelectField from './SelectField';
+import { Card, CardActions, CardContent, Chip, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import { green, orange, red } from '@material-ui/core/colors';
+import { Delete, Save } from '@material-ui/icons';
+import { Edit } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     card: {

@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, CardActions, Grid, makeStyles } from '@material-ui/core';
 import InputField from './InputField';
 import SelectField from './SelectField';
 import choicesPriority from '../data/priority';
 import choicesStatus from '../data/status';
+import { Button, Card, CardActions, Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
