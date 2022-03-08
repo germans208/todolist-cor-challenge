@@ -13,8 +13,6 @@ const List = ({ list, filtered, filteredItems, removeItem, editItem }) => {
         editItem(item);
     }, [editItem])
 
-
-    console.log(filtered)
     if (filtered) {
         return (
             <Grid container>
@@ -45,7 +43,6 @@ const List = ({ list, filtered, filteredItems, removeItem, editItem }) => {
 }
 
 const mapStateToProps = (state) => {
-    //obtenemos solamente lo que necesitamos, inyecta una props nueva al List
     return {
         list: state.items,
         filtered: state.filtered,
@@ -65,5 +62,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
-//High order components, Permite conectarte con el STORE, es una funcion que toma parametros
-//Se basa en el concepto de programacion funcional, el currying

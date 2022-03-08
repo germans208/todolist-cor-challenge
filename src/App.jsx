@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux'; //Contiene todo el estado de la app
+import { Provider } from 'react-redux';
 import Main from './layout/Main';
 import { store } from './store';
 

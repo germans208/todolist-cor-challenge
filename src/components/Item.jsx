@@ -26,7 +26,6 @@ const useStyles = makeStyles({
     },
 
 });
-//Cambie VALUE por cada proopiedad anterior: value.title
 
 const Item = ({ id, title, description, status, priority, onClickRemove, onClickEdit }) => {
     const classes = useStyles();
@@ -106,7 +105,7 @@ const Item = ({ id, title, description, status, priority, onClickRemove, onClick
                             color="primary"
                             aria-label="Edit"
                             onClick={() => {
-                                onClickEdit(value);//TODO EL OBJETO
+                                onClickEdit(value);
                                 setEditValue(false);
                             }}
                         >

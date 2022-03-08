@@ -1,6 +1,5 @@
 import orderBy from 'lodash/orderBy';
 
-//Valor por defecto cuando se inicia, tiene una lista Vacia
 const initialValue = {
     items: [],
     filtered: false,

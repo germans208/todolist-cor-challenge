@@ -131,8 +131,6 @@ const Form = ({ addItem }) => {
 }
 
 let todoId = 1
-
-//Disparador de Acciones
 const mapDispatchToProps = (dispatch) => {
     return ({
         addItem: (value) => {
