@@ -1,6 +1,11 @@
 # App Todo List 
 
-App Todo List Challenge Creado por Germán Edgardo Settino para la entrevista técnica de COR, se pueden crear tareas, eliminar y modificar prioridad y estado, a su vez se pueden filtrar por prioridad y estado, como así también orden por estado.
+Aplicación Todo List Challenge Creado por Germán Edgardo Settino para la entrevista técnica de COR.
+
+- Se pueden crear y eliminar tareas.
+- Se pueden modificar la prioridad y estado a cada tarea.
+- Se pueden filtrar por prioridad y estado.
+- Se pueden ordenar las tareas por estado.
 
 ## Instalación y ejecución
 
@@ -10,7 +15,6 @@ npm install
 npm start
 ```
 
-
 ## Desarrollada con:
 
 - React 17.0.2
@@ -18,5 +22,3 @@ npm start
 - Material UI 4.12.3
 
 https://www.linkedin.com/in/gsettino/
-
-

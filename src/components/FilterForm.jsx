@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     }
 });
 
-const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
+const FilterForm = ({ filterAll, filterByStatus, filterByPriority, orderByStatus }) => {
     const classes = useStyles();
     const [value, setValue] = useState({});
 
@@ -29,17 +29,15 @@ const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
             orderByStatus(event.target.value);
         }
 
+        if (event.target.value === 'TODOS') {
+            filterAll(event.target.value);
+        }
+
         setValue({
             ...value,
             [event.target.name]: event.target.value
         });
-    }, [setValue, filterByStatus, filterByPriority, orderByStatus, value]);
-
-    // useEffect(() => {
-    //     const newValue = { id: 'TODOS', name: 'TODOS' }
-    //     choicesPriority.unshift(newValue)
-    //     choicesStatus.unshift(newValue)
-    // }, [value])
+    }, [setValue, filterAll, filterByStatus, filterByPriority, orderByStatus, value]);
 
     return (
         <Card className={classes.card}>
@@ -53,7 +51,7 @@ const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
                                 value={value.priority}
                                 onChange={handleInputChange}
                                 choices={choicesPriority}
-                                fullWidth
+                                allItems={true}
                             />
                         </Grid>
                         <Grid item xs={4}>
@@ -63,6 +61,7 @@ const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
                                 value={value.status}
                                 onChange={handleInputChange}
                                 choices={choicesStatus}
+                                allItems={true}
                             />
                         </Grid>
                     </Grid>
@@ -86,6 +85,9 @@ const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
 //Disparador de Acciones
 const mapDispatchToProps = (dispatch) => {
     return ({
+        filterAll: (value) => {
+            dispatch({ type: 'FILTER_ALL', payload: value })
+        },
         filterByStatus: (value) => {
             dispatch({ type: 'FILTER_BY_STATUS', payload: value })
         },

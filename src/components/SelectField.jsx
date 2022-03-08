@@ -1,7 +1,8 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
-const SelectField = ({ value, name, placeholder, onChange, choices }) => {
+const SelectField = ({ value, name, placeholder, onChange, choices, allItems }) => {
+
     return (
         <FormControl variant="outlined" size="small" style={{ width: "100%" }}>
             <InputLabel id={placeholder}>
@@ -15,6 +16,12 @@ const SelectField = ({ value, name, placeholder, onChange, choices }) => {
                 value={value}
                 onChange={onChange}
             >
+                {allItems &&
+                    <MenuItem key={0} value={'TODOS'}>
+                        {'TODOS'}
+                    </MenuItem>
+                }
+
                 {choices.map((item, i) => (
                     <MenuItem key={i} value={item.id}>
                         {item.name}

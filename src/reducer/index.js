@@ -37,7 +37,8 @@ const reducer = (state = initialValue, action) => {
         case 'FILTER_ALL':
             return {
                 ...state,
-                items: state.items
+                filtered: true,
+                filteredItems: state.items
             }
 
         case 'FILTER_BY_STATUS':
