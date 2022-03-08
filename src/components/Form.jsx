@@ -40,8 +40,20 @@ const Form = ({ addItem }) => {
         id: 0,
     });
 
+    const [errors, setErrors] = useState('')
+
     const onSubmit = useCallback((event) => {
         event.preventDefault();
+        setErrors('');
+
+        if (value.title === undefined || value.description === undefined ||
+            value.priority === undefined || value.status === undefined || 
+            value.title === null || value.description === null ||
+            value.priority === null || value.status === null) {
+            setErrors('Requerido');
+            return false
+        }
+
         addItem(value);
         setValue({});
         event.currentTarget.reset();
@@ -53,7 +65,7 @@ const Form = ({ addItem }) => {
             [event.target.name]: event.target.value
         })
     }
-
+    console.log(errors);
     return (
         <div>
             <form onSubmit={onSubmit}>
@@ -65,7 +77,7 @@ const Form = ({ addItem }) => {
                                     name="title"
                                     placeholder="Titulo"
                                     onChange={handleInputChange}
-                                    required={true}
+                                    error={errors}
                                 />
                             </Grid>
                             <Grid item xs={3} >
@@ -75,7 +87,7 @@ const Form = ({ addItem }) => {
                                     value={value.priority}
                                     onChange={handleInputChange}
                                     choices={choicesPriority}
-                                    fullWidth
+                                    error={errors}
                                 />
                             </Grid>
                             <Grid item xs={3}>
@@ -85,6 +97,7 @@ const Form = ({ addItem }) => {
                                     value={value.status}
                                     onChange={handleInputChange}
                                     choices={choicesStatus}
+                                    error={errors}
                                 />
                             </Grid>
                         </div>
@@ -93,7 +106,7 @@ const Form = ({ addItem }) => {
                                 name="description"
                                 placeholder="Descripción"
                                 onChange={handleInputChange}
-                                required={true}
+                                error={errors}
                             />
                         </Grid>
                     </Grid>

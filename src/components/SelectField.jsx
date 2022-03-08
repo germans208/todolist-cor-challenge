@@ -1,10 +1,15 @@
 import React from 'react';
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@material-ui/core';
 
-const SelectField = ({ value, name, placeholder, onChange, choices, allItems }) => {
+const SelectField = ({ value, name, placeholder, onChange, choices, allItems, error }) => {
 
     return (
-        <FormControl variant="outlined" size="small" style={{ width: "100%" }}>
+        <FormControl 
+            variant="outlined" 
+            size="small" 
+            error={Boolean(error)}
+            style={{ width: "100%" }}
+        >
             <InputLabel id={placeholder}>
                 {placeholder}
             </InputLabel>
@@ -28,6 +33,7 @@ const SelectField = ({ value, name, placeholder, onChange, choices, allItems }) 
                     </MenuItem>
                 ))}
             </Select>
+            <FormHelperText>{error}</FormHelperText>
         </FormControl>
 
     );

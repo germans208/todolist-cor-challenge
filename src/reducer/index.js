@@ -37,12 +37,11 @@ const reducer = (state = initialValue, action) => {
         case 'FILTER_ALL':
             return {
                 ...state,
-                filtered: true,
+                filtered: false,
                 filteredItems: state.items
             }
 
         case 'FILTER_BY_STATUS':
-            debugger
             return {
                 ...state,
                 filtered: true,
@@ -50,7 +49,6 @@ const reducer = (state = initialValue, action) => {
             }
 
         case 'FILTER_BY_PRIORITY':
-            debugger
             return {
                 ...state,
                 filtered: true,

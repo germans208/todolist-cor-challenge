@@ -13,6 +13,8 @@ const List = ({ list, filtered, filteredItems, removeItem, editItem }) => {
         editItem(item);
     }, [editItem])
 
+
+    console.log(filtered)
     if (filtered) {
         return (
             <Grid container>
