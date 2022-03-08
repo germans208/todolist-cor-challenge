@@ -9,7 +9,7 @@ const InputField = ({ name, placeholder, onChange }) => {
             variant="outlined"
             placeholder={placeholder}
             onChange={onChange}
-            style={{ width: "95%" }}
+            style={{ width: "100%" }}
             size="small"
         />
     )

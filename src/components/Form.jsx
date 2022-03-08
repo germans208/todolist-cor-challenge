@@ -6,7 +6,7 @@ import SelectField from './SelectField';
 import choicesPriority from '../data/priority';
 import choicesStatus from '../data/status';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     root: {
         marginTop: '16px'
     },
@@ -26,9 +26,8 @@ const useStyles = makeStyles((theme) => ({
         border: '2px solid grey',
         borderRadius: '10px',
         padding: '10px',
-        
     }
-}));
+});
 
 const Form = ({ addItem }) => {
     const classes = useStyles();
@@ -103,6 +102,7 @@ const Form = ({ addItem }) => {
                                 type="submit"
                                 variant="contained"
                                 color="primary"
+                                size="small"
                             >
                                 Crear tarea
                             </Button>

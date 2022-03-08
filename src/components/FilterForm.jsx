@@ -1,12 +1,22 @@
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { Card, Grid } from '@material-ui/core';
+import { Card, Grid, makeStyles } from '@material-ui/core';
 import SelectField from './SelectField';
 import choicesPriority from '../data/priority';
 import choicesStatus from '../data/status';
 
-const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
+const useStyles = makeStyles({
+    card: {
+        marginTop: '16px',
+        border: '2px solid grey',
+        borderRadius: '10px',
+        padding: '10px',
+        
+    }
+});
 
+const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
+    const classes = useStyles();
     const [value, setValue] = useState({});
 
     const handleInputChange = useCallback((event) => {
@@ -32,46 +42,44 @@ const FilterForm = ({ filterByStatus, filterByPriority, orderByStatus }) => {
     // }, [value])
 
     return (
-        <div>
-            <Card>
-                <Grid container spacing={1}>
-                    <Grid item xs={9}>
-                        <Grid container spacing={1}>
-                            <Grid item xs={4}>
-                                <SelectField
-                                    name="priority"
-                                    placeholder="Prioridad"
-                                    value={value.priority}
-                                    onChange={handleInputChange}
-                                    choices={choicesPriority}
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={4}>
-                                <SelectField
-                                    name="status"
-                                    placeholder="Estado"
-                                    value={value.status}
-                                    onChange={handleInputChange}
-                                    choices={choicesStatus}
-                                />
-                            </Grid>
+        <Card className={classes.card}>
+            <Grid container spacing={1}>
+                <Grid item xs={9}>
+                    <Grid container spacing={1}>
+                        <Grid item xs={4}>
+                            <SelectField
+                                name="priority"
+                                placeholder="Filtrar por prioridad"
+                                value={value.priority}
+                                onChange={handleInputChange}
+                                choices={choicesPriority}
+                                fullWidth
+                            />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <SelectField
+                                name="status"
+                                placeholder="Filtrar por estado"
+                                value={value.status}
+                                onChange={handleInputChange}
+                                choices={choicesStatus}
+                            />
                         </Grid>
                     </Grid>
-
-                    <Grid item xs={3} sx={{ ml: 6 }}>
-                        <SelectField
-                            name="order"
-                            placeholder="Ordenar Por"
-                            value={value.order}
-                            onChange={handleInputChange}
-                            choices={[{ id: 'asc', name: 'ESTADO ASC' }, { id: 'desc', name: 'ESTADO DESC' }]}
-                            fullWidth
-                        />
-                    </Grid>
                 </Grid>
-            </Card>
-        </div>
+
+                <Grid item xs={3} sx={{ ml: 6 }}>
+                    <SelectField
+                        name="order"
+                        placeholder="Ordenar Por"
+                        value={value.order}
+                        onChange={handleInputChange}
+                        choices={[{ id: 'asc', name: 'ESTADO ASC' }, { id: 'desc', name: 'ESTADO DESC' }]}
+                        fullWidth
+                    />
+                </Grid>
+            </Grid>
+        </Card>
     )
 }
 

@@ -6,15 +6,14 @@ import FilterForm from '../components/FilterForm';
 import { Container, Grid, Typography } from '@material-ui/core';
 
 const styles = {
-    singleCol: {
-        marginTop: '1em',
-        marginBottom: '1em'
+    filter: {
+        marginTop: '10px'
     },
 };
 
 const Main = () => {
     return (
-        <Container sx={{ mt: 4 }} maxWidth="md" fixed>
+        <Container maxWidth="md" fixed>
             <Grid container spacing={0}>
                 <Typography variant="h6">
                     COR - TODO LIST
@@ -22,10 +21,7 @@ const Main = () => {
                 <Grid item xs={12}>
                     <Form />
                 </Grid>
-                <Grid item xs={12} style={styles.singleCol}>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Filtrar por:
-                    </Typography>
+                <Grid item xs={12} style={styles.filter}>
                     <FilterForm />
                 </Grid>
                 <Grid item xs={12}>

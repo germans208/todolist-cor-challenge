@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Card, CardActions, CardContent, CardHeader, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardHeader, Chip, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import { Delete, Save } from '@material-ui/icons';
 import { Edit } from '@material-ui/icons';
 import choicesPriority from '../data/priority';
@@ -8,17 +8,22 @@ import SelectField from './SelectField';
 
 const useStyles = makeStyles({
     card: {
+        maxWidth: 275,
         height: '95%',
         display: 'flex',
         flexDirection: 'column',
-        margin: '0.5rem 0',
-        marginTop: 10,
-        marginLeft: 10,
+        border: '2px solid grey',
+        marginTop: '16px',
+        marginLeft: '10px',
+    },
+    header: {
+        marginTop: '5px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        margin: '1em'
     },
 
-    priority: {
-        marginTop: '16px'
-    }
 });
 //Cambie VALUE por cada proopiedad anterior: value.title
 
@@ -46,42 +51,52 @@ const Item = ({ id, title, description, status, priority, onClickRemove, onClick
         setEditValue(true);
     }
 
+    const getColor = (value) => {
+        switch (value) {
+            case 'ALTA':
+                return "secondary";
+            case 'MEDIA':
+                return "primary";
+            case 'BAJA':
+                return "";
+            default:
+                return "primary";
+        }
+    }
+
     return (
         <Grid item key={0} xs={12} sm={6} md={6} lg={4}>
             <Card className={classes.card}>
-
-                <CardHeader className={classes.priority}
-
-                    title={editValue ?
-                        <SelectField
-                            name="priority"
-                            placeholder="Prioridad"
-                            value={value.priority}
-                            onChange={handleInputChange}
-                            choices={choicesPriority}
-                            fullWidth
-                        /> :
-                         `Prioridad: ${priority}`
-                    }
-
-                    subheader={editValue ?
-                        <SelectField
-                            name="status"
-                            placeholder="Estado"
-                            value={value.status}
-                            onChange={handleInputChange}
-                            choices={choicesStatus}
-                        /> : 
-                        `Estado: ${status}`
-                    }
-
-                />
                 <CardContent>
-                    <Typography gutterBottom variant="h6" component="h6">
-                        Titulo: {title}
+                    <div className={classes.header}>
+                        {editValue ?
+                            <SelectField
+                                name="priority"
+                                placeholder="Prioridad"
+                                value={value.priority}
+                                onChange={handleInputChange}
+                                choices={choicesPriority}
+                            />
+                            :
+                            <Chip label={priority} size="small" color={getColor(priority)} />
+                        }
+                        {editValue ?
+                            <SelectField
+                                name="status"
+                                placeholder="Estado"
+                                value={value.status}
+                                onChange={handleInputChange}
+                                choices={choicesStatus}
+                            />
+                            :
+                            <Chip label={status} size="small" variant="outlined" />
+                        }
+                    </div>
+                    <Typography variant="body2">
+                        {title}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Descripcion: {description}
+                        {description}
                     </Typography>
                 </CardContent>
                 <CardActions>
