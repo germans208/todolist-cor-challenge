@@ -1,7 +1,7 @@
 import { TextField } from '@material-ui/core';
 import React from 'react';
 
-const InputField = ({ name, placeholder, onChange }) => {
+const InputField = ({ name, placeholder, onChange, required }) => {
 
     return (
         <TextField

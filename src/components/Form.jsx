@@ -65,6 +65,7 @@ const Form = ({ addItem }) => {
                                     name="title"
                                     placeholder="Titulo"
                                     onChange={handleInputChange}
+                                    required={true}
                                 />
                             </Grid>
                             <Grid item xs={3} >
@@ -90,8 +91,9 @@ const Form = ({ addItem }) => {
                         <Grid item xs={12} className={classes.root}>
                             <InputField
                                 name="description"
-                                placeholder="Descripcion"
+                                placeholder="Descripción"
                                 onChange={handleInputChange}
+                                required={true}
                             />
                         </Grid>
                     </Grid>

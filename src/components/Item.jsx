@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { Card, CardActions, CardContent, CardHeader, Chip, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardActions, CardContent, Chip, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import { Delete, Save } from '@material-ui/icons';
 import { Edit } from '@material-ui/icons';
 import choicesPriority from '../data/priority';
 import choicesStatus from '../data/status';
 import SelectField from './SelectField';
+import { green, orange, red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
     card: {
@@ -54,11 +55,11 @@ const Item = ({ id, title, description, status, priority, onClickRemove, onClick
     const getColor = (value) => {
         switch (value) {
             case 'ALTA':
-                return "secondary";
+                return red[200];
             case 'MEDIA':
-                return "primary";
+                return orange[200];
             case 'BAJA':
-                return "";
+                return green[200];
             default:
                 return "primary";
         }
@@ -78,7 +79,7 @@ const Item = ({ id, title, description, status, priority, onClickRemove, onClick
                                 choices={choicesPriority}
                             />
                             :
-                            <Chip label={priority} size="small" color={getColor(priority)} />
+                            <Chip label={priority} size="small" style={{ backgroundColor: getColor(priority) }} />
                         }
                         {editValue ?
                             <SelectField
