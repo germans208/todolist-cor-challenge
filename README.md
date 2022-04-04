@@ -1,6 +1,6 @@
 # App Todo List 
 
-Aplicación Todo List Challenge Creado por Germán Edgardo Settino para la entrevista técnica de COR.
+Aplicación Todo List Challenge Creado por Germán Edgardo Settino.
 
 - Se pueden crear y eliminar tareas.
 - Se pueden modificar la prioridad y estado a cada tarea.
